@@ -41,12 +41,4 @@ public class BaggageCalculator {
 
     return total;
   }
-
-  private decimal CalculatePriceFlat(int numBags) {
-    decimal total = 0;
-
-    return 100M;
-
-    return numBags * ExtraBagFee;
-  }
 }
