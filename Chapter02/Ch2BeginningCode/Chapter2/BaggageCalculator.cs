@@ -9,8 +9,9 @@ public class BaggageCalculator {
     decimal total = 0;
 
     if (carryOn > 0) {
-      Console.WriteLine($"Carry-on: {carryOn * 30M}");
-      total += carryOn * 30M;
+      decimal fee = carryOn * 30M;
+      Console.WriteLine($"Carry-on: {fee}");
+      total += fee;
     }
 
     if (bags > 0) {
