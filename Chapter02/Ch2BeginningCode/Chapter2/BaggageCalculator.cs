@@ -17,7 +17,9 @@ public class BaggageCalculator {
     }
 
     if (bags > 0) {
-      total = ApplyCheckedBagFee(bags, passengers, total);
+      decimal bagFee = ApplyCheckedBagFee(bags, passengers);
+      Console.WriteLine(bagFee);
+      total += bagFee;
     }
 
     if (isHoliday) {
@@ -30,22 +32,16 @@ public class BaggageCalculator {
     return total;
   }
 
-  private static decimal ApplyCheckedBagFee(int bags, int passengers, decimal total)
-  {
+  private static decimal ApplyCheckedBagFee(int bags, int passengers) {
     if (bags <= passengers) {
       decimal firstBagFee = bags * FirstBagFee;
-      Console.WriteLine($"Checked: {firstBagFee}");
-      total += firstBagFee;
+      return firstBagFee;
     } else {
       decimal firstBagFee = passengers * FirstBagFee;
       decimal extraBagFee = (bags - passengers) * ExtraBagFee;
-      decimal checkedFee = firstBagFee +
-                           extraBagFee;
-
+      decimal checkedFee = firstBagFee + extraBagFee;
       Console.WriteLine($"Checked: {checkedFee}");
-      total += checkedFee;
+      return checkedFee;
     }
-
-    return total;
   }
 }
