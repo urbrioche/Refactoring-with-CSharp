@@ -1,12 +1,7 @@
 ﻿namespace Packt.CloudySkiesAir.Chapter2;
 
 public class BaggageCalculator {
-
-  private decimal holidayFeePercent = 0.1M;
-  public decimal HolidayFeePercent {
-    get { return holidayFeePercent; }
-    set { holidayFeePercent = value; }
-  }
+  public decimal HolidayFeePercent { get; set; } = 0.1M;
 
   public decimal CalculatePrice(int bags, 
     int carryOn, int passengers, DateTime travelTime) {
