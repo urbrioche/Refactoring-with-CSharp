@@ -1,6 +1,9 @@
 ﻿namespace Packt.CloudySkiesAir.Chapter2;
 
 public class BaggageCalculator {
+  private const decimal CarryOnFee = 30M;
+  private const decimal FirstBagFee = 40M;
+  private const decimal ExtraBagFee = 50M;
   public decimal HolidayFeePercent { get; set; } = 0.1M;
 
   public decimal CalculatePrice(int bags,
@@ -8,19 +11,19 @@ public class BaggageCalculator {
     decimal total = 0;
 
     if (carryOn > 0) {
-      decimal fee = carryOn * 30M;
+      decimal fee = carryOn * CarryOnFee;
       Console.WriteLine($"Carry-on: {fee}");
       total += fee;
     }
 
     if (bags > 0) {
       if (bags <= passengers) {
-        decimal firstBagFee = bags * 40M;
+        decimal firstBagFee = bags * FirstBagFee;
         Console.WriteLine($"Checked: {firstBagFee}");
         total += firstBagFee;
       } else {
-        decimal firstBagFee = passengers * 40M;
-        decimal extraBagFee = (bags - passengers) * 50M;
+        decimal firstBagFee = passengers * FirstBagFee;
+        decimal extraBagFee = (bags - passengers) * ExtraBagFee;
         decimal checkedFee = firstBagFee +
                              extraBagFee;
 
@@ -44,6 +47,6 @@ public class BaggageCalculator {
 
     return 100M;
 
-    return numBags * 50M;
+    return numBags * ExtraBagFee;
   }
 }
