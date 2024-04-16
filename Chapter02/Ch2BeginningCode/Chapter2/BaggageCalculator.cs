@@ -3,9 +3,8 @@
 public class BaggageCalculator {
   public decimal HolidayFeePercent { get; set; } = 0.1M;
 
-  public decimal CalculatePrice(int bags, 
+  public decimal CalculatePrice(int bags,
     int carryOn, int passengers, DateTime travelTime) {
-
     decimal total = 0;
 
     if (carryOn > 0) {
@@ -16,11 +15,14 @@ public class BaggageCalculator {
 
     if (bags > 0) {
       if (bags <= passengers) {
-        Console.WriteLine($"Checked: {bags * 40M}");
-        total += bags * 40M;
+        decimal firstBagFee = bags * 40M;
+        Console.WriteLine($"Checked: {firstBagFee}");
+        total += firstBagFee;
       } else {
-        decimal checkedFee = (passengers * 40M) + 
-          ((bags - passengers) * 50M);
+        decimal firstBagFee = passengers * 40M;
+        decimal extraBagFee = (bags - passengers) * 50M;
+        decimal checkedFee = firstBagFee +
+                             extraBagFee;
 
         Console.WriteLine($"Checked: {checkedFee}");
         total += checkedFee;
@@ -28,14 +30,15 @@ public class BaggageCalculator {
     }
 
     if (travelTime.Month >= 11 || travelTime.Month <= 2) {
-      Console.WriteLine("Holiday Fee: " + 
-        (total * HolidayFeePercent));
+      decimal holidayFee = total * HolidayFeePercent;
+      Console.WriteLine("Holiday Fee: " + holidayFee);
 
-      total += total * HolidayFeePercent;
+      total += holidayFee;
     }
 
     return total;
   }
+
   private decimal CalculatePriceFlat(int numBags) {
     decimal total = 0;
 
