@@ -77,11 +77,9 @@ public class BoardingProcessor {
         return "Please Wait";
       }
 
-      if (_priorityLaneGroups.Contains(group)) {
-        return "Board Now via Priority Lane";
-      }
-
-      return "Board Now";
+      return _priorityLaneGroups.Contains(group)
+        ? "Board Now via Priority Lane"
+        : "Board Now";
 
     }
 
