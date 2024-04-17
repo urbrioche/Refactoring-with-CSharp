@@ -61,11 +61,12 @@ public class BoardingProcessor {
       return "Flight Departed";
     }
 
-    if (isMilitary && Status == BoardingStatus.Boarding) {
+    bool isBoarding = Status == BoardingStatus.Boarding;
+    if (isMilitary && isBoarding) {
       return "Board Now via Priority Lane";
-    } else if (needsHelp && Status == BoardingStatus.Boarding) {
+    } else if (needsHelp && isBoarding) {
       return "Board Now via Priority Lane";
-    } else if (Status == BoardingStatus.Boarding) {
+    } else if (isBoarding) {
       if (CurrentBoardingGroup >= group) {
         if (_priorityLaneGroups.Contains(group)) {
           return "Board Now via Priority Lane";
