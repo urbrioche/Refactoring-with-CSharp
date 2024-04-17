@@ -59,24 +59,24 @@ public class BoardingProcessor {
 
     if (Status == BoardingStatus.PlaneDeparted) {
       return "Flight Departed";
-    } else {
-      if (isMilitary && Status == BoardingStatus.Boarding) {
-        return "Board Now via Priority Lane";
-      } else if (needsHelp && Status == BoardingStatus.Boarding) {
-        return "Board Now via Priority Lane";
-      } else if (Status == BoardingStatus.Boarding) {
-        if (CurrentBoardingGroup >= group) {
-          if (_priorityLaneGroups.Contains(group)) {
-            return "Board Now via Priority Lane";
-          } else {
-            return "Board Now";
-          }
+    }
+
+    if (isMilitary && Status == BoardingStatus.Boarding) {
+      return "Board Now via Priority Lane";
+    } else if (needsHelp && Status == BoardingStatus.Boarding) {
+      return "Board Now via Priority Lane";
+    } else if (Status == BoardingStatus.Boarding) {
+      if (CurrentBoardingGroup >= group) {
+        if (_priorityLaneGroups.Contains(group)) {
+          return "Board Now via Priority Lane";
         } else {
-          return "Please Wait";
+          return "Board Now";
         }
       } else {
-        return "Boarding Not Started";
+        return "Please Wait";
       }
+    } else {
+      return "Boarding Not Started";
     }
   }
 
