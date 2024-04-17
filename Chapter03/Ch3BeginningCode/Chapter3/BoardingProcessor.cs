@@ -12,8 +12,8 @@ public class BoardingProcessor {
 
   public void DisplayBoardingStatus(List<Passenger> passengers, bool? hasBoarded = null) {
     List<Passenger> filteredPassengers = new();
-    for (int i = 0; i < passengers.Count; i++) {
-      Passenger p = passengers[i];
+    foreach (var p in passengers)
+    {
       if (!hasBoarded.HasValue || p.HasBoarded == hasBoarded) {
         filteredPassengers.Add(p);
       }
