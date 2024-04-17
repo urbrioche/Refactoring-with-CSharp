@@ -72,16 +72,17 @@ public class BoardingProcessor {
       if (isMilitary || needsHelp) {
         return "Board Now via Priority Lane";
       }
-      
-      if (CurrentBoardingGroup >= group) {
-        if (_priorityLaneGroups.Contains(group)) {
-          return "Board Now via Priority Lane";
-        }
 
-        return "Board Now";
+      if (CurrentBoardingGroup < group) {
+        return "Please Wait";
       }
 
-      return "Please Wait";
+      if (_priorityLaneGroups.Contains(group)) {
+        return "Board Now via Priority Lane";
+      }
+
+      return "Board Now";
+
     }
 
     return "Boarding Not Started";
