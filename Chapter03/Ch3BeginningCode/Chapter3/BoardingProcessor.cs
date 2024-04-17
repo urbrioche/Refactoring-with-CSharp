@@ -1,10 +1,15 @@
 ﻿using Packt.CloudySkiesAir.Chapter3;
 using System.Linq;
+
 public class BoardingProcessor {
 
   public int CurrentBoardingGroup { get; set; } = 2;
   public BoardingStatus Status { get; set; }
-  private int[] _priorityLaneGroups = new[] { 1, 2 };
+
+  private int[] _priorityLaneGroups = new[] {
+    1,
+    2
+  };
 
   public void DisplayBoardingStatus(List<Passenger> passengers, bool? hasBoarded = null) {
     List<Passenger> filteredPassengers = new();
@@ -38,6 +43,7 @@ public class BoardingProcessor {
         } else {
           Console.WriteLine($"Boarding Group {CurrentBoardingGroup}");
         }
+
         break;
 
       case BoardingStatus.PlaneDeparted:
@@ -62,24 +68,27 @@ public class BoardingProcessor {
     }
 
     bool isBoarding = Status == BoardingStatus.Boarding;
-    if (isMilitary && isBoarding) {
-      return "Board Now via Priority Lane";
-    } else if (needsHelp && isBoarding) {
-      return "Board Now via Priority Lane";
-    } else if (isBoarding) {
+    if (isBoarding) {
+      if (isMilitary) {
+        return "Board Now via Priority Lane";
+      }
+
+      if (needsHelp) {
+        return "Board Now via Priority Lane";
+      }
+
       if (CurrentBoardingGroup >= group) {
         if (_priorityLaneGroups.Contains(group)) {
           return "Board Now via Priority Lane";
-        } else {
-          return "Board Now";
         }
-      } else {
-        return "Please Wait";
+
+        return "Board Now";
       }
-    } else {
-      return "Boarding Not Started";
+
+      return "Please Wait";
     }
+
+    return "Boarding Not Started";
   }
 
 }
-
