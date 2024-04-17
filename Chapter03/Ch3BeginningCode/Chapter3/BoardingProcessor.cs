@@ -57,7 +57,9 @@ public class BoardingProcessor {
     bool needsHelp = passenger.NeedsHelp;
     int group = passenger.BoardingGroup;
 
-    if (Status != BoardingStatus.PlaneDeparted) {
+    if (Status == BoardingStatus.PlaneDeparted) {
+      return "Flight Departed";
+    } else {
       if (isMilitary && Status == BoardingStatus.Boarding) {
         return "Board Now via Priority Lane";
       } else if (needsHelp && Status == BoardingStatus.Boarding) {
@@ -75,8 +77,6 @@ public class BoardingProcessor {
       } else {
         return "Boarding Not Started";
       }
-    } else {
-      return "Flight Departed";
     }
   }
 
