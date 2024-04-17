@@ -18,9 +18,11 @@ public class PassengerTests
     }
 
     private Passenger Build(string firstName, string lastName) {
-        Passenger passenger = new Passenger();
-        passenger.FirstName = firstName;
-        passenger.LastName = lastName;
+        Passenger passenger = new()
+        {
+            FirstName = firstName,
+            LastName = lastName,
+        };
 
         return passenger;
     }
