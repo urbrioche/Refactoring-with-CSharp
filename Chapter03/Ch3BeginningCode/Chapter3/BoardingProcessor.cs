@@ -69,14 +69,10 @@ public class BoardingProcessor {
 
     bool isBoarding = Status == BoardingStatus.Boarding;
     if (isBoarding) {
-      if (isMilitary) {
+      if (isMilitary || needsHelp) {
         return "Board Now via Priority Lane";
       }
-
-      if (needsHelp) {
-        return "Board Now via Priority Lane";
-      }
-
+      
       if (CurrentBoardingGroup >= group) {
         if (_priorityLaneGroups.Contains(group)) {
           return "Board Now via Priority Lane";
