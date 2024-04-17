@@ -1,5 +1,4 @@
 ﻿using Packt.CloudySkiesAir.Chapter3;
-using System.Linq;
 
 public class BoardingProcessor {
 
@@ -63,27 +62,14 @@ public class BoardingProcessor {
     bool needsHelp = passenger.NeedsHelp;
     int group = passenger.BoardingGroup;
 
-    if (Status == BoardingStatus.PlaneDeparted) {
-      return "Flight Departed";
-    }
+    return Status switch {
+      BoardingStatus.PlaneDeparted => "Flight Departed",
+      BoardingStatus.Boarding when isMilitary || needsHelp => "Board Now via Priority Lane",
+      BoardingStatus.Boarding when CurrentBoardingGroup < group => "Please Wait",
+      BoardingStatus.Boarding => _priorityLaneGroups.Contains(group) ? "Board Now via Priority Lane" : "Board Now",
+      _ => "Boarding Not Started"
+    };
 
-    bool isBoarding = Status == BoardingStatus.Boarding;
-    if (isBoarding) {
-      if (isMilitary || needsHelp) {
-        return "Board Now via Priority Lane";
-      }
-
-      if (CurrentBoardingGroup < group) {
-        return "Please Wait";
-      }
-
-      return _priorityLaneGroups.Contains(group)
-        ? "Board Now via Priority Lane"
-        : "Board Now";
-
-    }
-
-    return "Boarding Not Started";
   }
 
 }
