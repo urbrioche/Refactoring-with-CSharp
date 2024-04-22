@@ -4,10 +4,7 @@ public class FlightTracker {
     private readonly List<Flight> _flights = new();
 
     public Flight ScheduleNewFlight(string id, string dest, DateTime depart, string gate) {
-        Flight flight = new() {
-            Id = id,
-            Destination = dest,
-            DepartureTime = depart,
+        Flight flight = new(id, dest, depart) {
             Gate = gate,
             Status = FlightStatus.Inbound
         };
