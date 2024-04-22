@@ -21,37 +21,37 @@ public class FlightTracker {
         }
     }
 
-    public Flight? MarkFlightDelayed(string fId, DateTime newTime) {
-        Flight? flight = FindFlightById(fId);
-
-        if (flight != null) {
-            flight.DepartureTime = newTime;
-            flight.Status = FlightStatus.Delayed;
-            Console.WriteLine($"{fId} delayed until {Format(newTime)}");
-        } else {
-            Console.WriteLine($"{fId} could not be found");
-        }
-        return flight;
-    }
-
-    public Flight? MarkFlightArrived(DateTime time, string id) {
+    public Flight? MarkFlightDelayed(string id, DateTime newDepartureTime) {
         Flight? flight = FindFlightById(id);
+
         if (flight != null) {
-            flight.ArrivalTime = time;
-            flight.Status = FlightStatus.OnTime;
-            Console.WriteLine($"{id} arrived at {Format(time)}.");
+            flight.DepartureTime = newDepartureTime;
+            flight.Status = FlightStatus.Delayed;
+            Console.WriteLine($"{id} delayed until {Format(newDepartureTime)}");
         } else {
             Console.WriteLine($"{id} could not be found");
         }
         return flight;
     }
 
-    public Flight? MarkFlightDeparted(string id, DateTime t) {
+    public Flight? MarkFlightArrived(DateTime arrivalTime, string id) {
         Flight? flight = FindFlightById(id);
         if (flight != null) {
-            flight.DepartureTime = t;
+            flight.ArrivalTime = arrivalTime;
+            flight.Status = FlightStatus.OnTime;
+            Console.WriteLine($"{id} arrived at {Format(arrivalTime)}.");
+        } else {
+            Console.WriteLine($"{id} could not be found");
+        }
+        return flight;
+    }
+
+    public Flight? MarkFlightDeparted(string id, DateTime departureTime) {
+        Flight? flight = FindFlightById(id);
+        if (flight != null) {
+            flight.DepartureTime = departureTime;
             flight.Status = FlightStatus.Departed;
-            Console.WriteLine($"{id} departed at {Format(t)}.");
+            Console.WriteLine($"{id} departed at {Format(departureTime)}.");
         } else {
             Console.WriteLine($"{id} could not be found");
         }
