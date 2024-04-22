@@ -44,7 +44,7 @@ namespace PacktCloudySkiesAirTests.Chapter4
             _target.ScheduleNewFlight(flightId, "New York", originalDepartureTime, "A01");
 
             // Act
-            var actual = _target.DelayFlight(flightId, newDepartureTime);
+            var actual = _target.MarkFlightDelayed(flightId, newDepartureTime);
 
             // Assert
             Assert.NotNull(actual);

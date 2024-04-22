@@ -21,7 +21,7 @@ public class FlightTracker {
         }
     }
 
-    public Flight? DelayFlight(string fId, DateTime newTime) {
+    public Flight? MarkFlightDelayed(string fId, DateTime newTime) {
         Flight? flight = FindFlightById(fId);
 
         if (flight != null) {
