@@ -36,7 +36,7 @@ public class FlightTracker {
         return flight;
     }
 
-    public Flight? MarkFlightArrived(string id, DateTime arrivalTime) {
+    public Flight? MarkFlightArrived(string id, DateTime arrivalTime, string gate) {
         Flight? flight = FindFlightById(id);
         if (flight != null) {
             flight.ArrivalTime = arrivalTime;
