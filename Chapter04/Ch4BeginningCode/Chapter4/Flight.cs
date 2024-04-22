@@ -1,6 +1,16 @@
 ﻿namespace Packt.CloudySkiesAir.Chapter4;
 
 public class Flight {
+
+    public Flight(string id, string destination, DateTime departureTime) {
+        Id = id;
+        Destination = destination;
+        DepartureTime = departureTime;
+    }
+
+    public Flight() {
+    }
+
     public string Id { get; set; }
     public string Destination { get; set; }
     public DateTime DepartureTime { get; set; }
