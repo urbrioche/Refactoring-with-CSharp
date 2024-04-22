@@ -11,6 +11,11 @@ public class Flight {
     public Flight() {
     }
 
+    public Flight(string id, string destination, DateTime departureTime, FlightStatus status)
+        : this(id, destination, departureTime) {
+        Status = status;
+    }
+
     public string Id { get; set; }
     public string Destination { get; set; }
     public DateTime DepartureTime { get; set; }
