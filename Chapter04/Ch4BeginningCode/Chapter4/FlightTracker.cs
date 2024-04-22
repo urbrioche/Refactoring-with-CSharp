@@ -15,9 +15,14 @@ public class FlightTracker {
         return flight;
     }
 
+    public Flight ScheduleNewFlight(Flight flight) {
+        _flights.Add(flight);
+        return flight;
+    }
+
     public void DisplayFlights() {
         foreach (Flight f in _flights) {
-            Console.WriteLine($"{f.Id,-9} {f.Destination, -5} {Format(f.DepartureTime), -21} {f.Gate, -5} {f.Status}");
+            Console.WriteLine($"{f.Id,-9} {f.Destination,-5} {Format(f.DepartureTime),-21} {f.Gate,-5} {f.Status}");
         }
     }
 
@@ -31,6 +36,7 @@ public class FlightTracker {
         } else {
             Console.WriteLine($"{id} could not be found");
         }
+
         return flight;
     }
 
@@ -43,6 +49,7 @@ public class FlightTracker {
         } else {
             Console.WriteLine($"{id} could not be found");
         }
+
         return flight;
     }
 
@@ -55,6 +62,7 @@ public class FlightTracker {
         } else {
             Console.WriteLine($"{id} could not be found");
         }
+
         return flight;
     }
 
