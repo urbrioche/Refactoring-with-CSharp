@@ -11,8 +11,7 @@ public class FlightTracker {
             Gate = gate,
             Status = FlightStatus.Inbound
         };
-        _flights.Add(flight);
-        return flight;
+        return ScheduleNewFlight(flight);
     }
 
     public Flight ScheduleNewFlight(Flight flight) {
