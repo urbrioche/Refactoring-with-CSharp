@@ -61,7 +61,7 @@ namespace PacktCloudySkiesAirTests.Chapter4
             _target.ScheduleNewFlight(flightId, "New York", DateTime.Now);
 
             // Act
-            var actual = _target.MarkFlightArrived(flightId, arrivalTime, "A4");
+            var actual = _target.MarkFlightArrived(flightId, arrivalTime);
 
             // Assert
             Assert.NotNull(actual);
