@@ -23,7 +23,7 @@ public class FlightTracker
     {
         foreach (var f in _flights)
         {
-            Console.WriteLine($"{f.Id,-9} {f.Destination,-5} {Format(f.DepartureTime),-21} {f.Gate,-5} {f.Status}");
+            Console.WriteLine($"{f.Id,-9} {f.Destination,-5} {DateHelpers.Format(f.DepartureTime),-21} {f.Gate,-5} {f.Status}");
         }
     }
 
@@ -33,7 +33,7 @@ public class FlightTracker
         {
             flight.DepartureTime = newDepartureTime;
             flight.Status = FlightStatus.Delayed;
-            Console.WriteLine($"{id} delayed until {Format(newDepartureTime)}");
+            Console.WriteLine($"{id} delayed until {DateHelpers.Format(newDepartureTime)}");
         });
     }
 
@@ -59,7 +59,7 @@ public class FlightTracker
         {
             flight.ArrivalTime = arrivalTime;
             flight.Status = FlightStatus.OnTime;
-            Console.WriteLine($"{id} arrived at {Format(arrivalTime)}.");
+            Console.WriteLine($"{id} arrived at {DateHelpers.Format(arrivalTime)}.");
         });
     }
 
@@ -69,14 +69,10 @@ public class FlightTracker
         {
             flight.DepartureTime = departureTime;
             flight.Status = FlightStatus.Departed;
-            Console.WriteLine($"{id} departed at {Format(departureTime)}.");
+            Console.WriteLine($"{id} departed at {DateHelpers.Format(departureTime)}.");
         });
     }
 
     private Flight? FindFlightById(string id) => _flights.FirstOrDefault(f => f.Id == id);
 
-    private static string Format(DateTime time)
-    {
-        return time.ToString("ddd MMM dd HH:mm tt");
-    }
 }
