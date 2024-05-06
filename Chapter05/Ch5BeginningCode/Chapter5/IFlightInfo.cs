@@ -1,6 +1,4 @@
-﻿using Packt.CloudySkiesAir.Chapter5.AirTravel;
-
-namespace Packt.CloudySkiesAir.Chapter5;
+﻿namespace Packt.CloudySkiesAir.Chapter5;
 
 public interface IFlightInfo {
   string Id { get; }

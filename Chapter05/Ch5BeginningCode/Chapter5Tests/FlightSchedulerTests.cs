@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Packt.CloudySkiesAir.Chapter5.AirTravel;
 using Xunit;
 
 namespace Packt.CloudySkiesAir.Chapter5.Tests
