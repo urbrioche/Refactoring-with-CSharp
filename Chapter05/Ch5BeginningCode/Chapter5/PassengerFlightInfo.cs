@@ -16,8 +16,8 @@ namespace Packt.CloudySkiesAir.Chapter5
       _passengers = 0;
 
     public string BuildFlightIdentifier() =>
-      $"{Id} {DepartureLocation.Code}-" +
-      $"{ArrivalLocation.Code} carrying " +
+      $"{Id} {DepartureLocation}-" +
+      $"{ArrivalLocation} carrying " +
       $"{_passengers} people";
 
     public override string ToString() => BuildFlightIdentifier();
