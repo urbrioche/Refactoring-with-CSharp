@@ -1,6 +1,6 @@
 namespace Packt.CloudySkiesAir.Chapter5
 {
-  public class PassengerFlightInfo : FlightInfoBase, IFlightInfo {
+  public class PassengerFlightInfo : FlightInfoBase {
     private int _passengers;
 
     public void Load(int passengers) => 
