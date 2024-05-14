@@ -1,7 +1,5 @@
-namespace Packt.CloudySkiesAir.Chapter5
-{
-  public abstract class FlightInfoBase: IFlightInfo
-  {
+namespace Packt.CloudySkiesAir.Chapter5 {
+  public abstract class FlightInfoBase : IFlightInfo {
     public string Id { get; set; }
     public Airport DepartureLocation { get; set; }
     public Airport ArrivalLocation { get; set; }
@@ -9,7 +7,7 @@ namespace Packt.CloudySkiesAir.Chapter5
     public DateTime ArrivalTime { get; set; }
     public TimeSpan Duration => DepartureTime - ArrivalTime;
 
-    protected abstract string BuildFlightIdentifier();
+    protected virtual string BuildFlightIdentifier() => $"{Id} {DepartureLocation}-{ArrivalLocation}";
 
     public override string ToString() => BuildFlightIdentifier();
   }
