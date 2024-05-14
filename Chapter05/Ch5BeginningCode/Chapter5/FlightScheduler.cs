@@ -9,7 +9,7 @@ public class FlightScheduler {
       ArrivalLocation = arrive,
       ArrivalTime = arriveTime,
       DepartureLocation = depart,
-      DepartureTime = departTime,      
+      DepartureTime = departTime,
     };
     flight.Load(passengers);
 
@@ -33,25 +33,23 @@ public class FlightScheduler {
   }
 
   public IEnumerable<IFlightInfo> Search(
-    Airport? depart, Airport? arrive,
-    DateTime? minDepartTime, DateTime? maxDepartTime,
-    DateTime? minArriveTime, DateTime? maxArriveTime,
-    TimeSpan? minLength, TimeSpan? maxLength) {
+    Airport? depart,
+    Airport? arrive,
+    DateTime? minDepartTime,
+    DateTime? maxDepartTime,
+    DateTime? minArriveTime,
+    DateTime? maxArriveTime,
+    TimeSpan? minLength,
+    TimeSpan? maxLength) {
 
     IEnumerable<IFlightInfo> results = _flights;
 
     if (depart != null) {
-      results = results.Where(f =>
-        f.DepartureLocation.Code == depart.Code &&
-        f.DepartureLocation.Country == depart.Country
-      );
+      results = results.Where(f => f.DepartureLocation == depart);
     }
 
     if (arrive != null) {
-      results = results.Where(f =>
-        f.ArrivalLocation.Code == arrive.Code &&
-        f.ArrivalLocation.Country == arrive.Country
-      );
+      results = results.Where(f => f.ArrivalLocation == arrive);
     }
 
     if (minDepartTime != null) {
