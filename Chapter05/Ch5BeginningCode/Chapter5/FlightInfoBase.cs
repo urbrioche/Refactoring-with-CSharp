@@ -8,5 +8,9 @@ namespace Packt.CloudySkiesAir.Chapter5
     public DateTime DepartureTime { get; set; }
     public DateTime ArrivalTime { get; set; }
     public TimeSpan Duration => DepartureTime - ArrivalTime;
+
+    protected abstract string BuildFlightIdentifier();
+
+    public override string ToString() => BuildFlightIdentifier();
   }
 }

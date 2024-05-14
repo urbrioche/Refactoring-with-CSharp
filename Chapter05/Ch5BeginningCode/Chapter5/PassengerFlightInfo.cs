@@ -9,11 +9,10 @@ namespace Packt.CloudySkiesAir.Chapter5
     public void Unload() => 
       _passengers = 0;
 
-    public string BuildFlightIdentifier() =>
+    protected override string BuildFlightIdentifier() =>
       $"{Id} {DepartureLocation}-" +
       $"{ArrivalLocation} carrying " +
       $"{_passengers} people";
 
-    public override string ToString() => BuildFlightIdentifier();
   }
 }
