@@ -1,6 +1,6 @@
 namespace Packt.CloudySkiesAir.Chapter5
 {
-  public class FlightInfoBase: IFlightInfo
+  public abstract class FlightInfoBase: IFlightInfo
   {
     public string Id { get; set; }
     public Airport DepartureLocation { get; set; }
