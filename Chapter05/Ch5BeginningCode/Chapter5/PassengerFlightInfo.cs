@@ -1,17 +1,17 @@
 namespace Packt.CloudySkiesAir.Chapter5 {
   public class PassengerFlightInfo : FlightInfoBase {
-    private int _passengers;
+    public int Passengers { get; private set; }
 
     public void Load(int passengers) =>
-      _passengers = passengers;
+      Passengers = passengers;
 
     public void Unload() =>
-      _passengers = 0;
+      Passengers = 0;
 
     protected override string BuildFlightIdentifier() =>
       base.BuildFlightIdentifier() +
       $"{ArrivalLocation} carrying " +
-      $"{_passengers} people";
+      $"{Passengers} people";
 
   }
 }
