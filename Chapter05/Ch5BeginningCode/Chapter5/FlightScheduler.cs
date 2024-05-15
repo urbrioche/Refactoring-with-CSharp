@@ -28,10 +28,14 @@ public class FlightScheduler {
   public void ScheduleFlight(string id, Airport depart, Airport arrive, DateTime departTime, DateTime arriveTime, int passengers) {
     PassengerFlightInfo flight = new() {
       Id = id,
-      ArrivalLocation = arrive,
-      ArrivalTime = arriveTime,
-      DepartureLocation = depart,
-      DepartureTime = departTime,
+      Arrival = new AirportEvent {
+        Location = arrive,
+        Time = arriveTime,
+      },
+      Departure = new AirportEvent {
+        Location = depart,
+        Time = departTime,
+      },
     };
     flight.Load(passengers);
 
@@ -60,27 +64,27 @@ public class FlightScheduler {
     IEnumerable<IFlightInfo> results = _flights;
 
     if (flightSearch.Depart != null) {
-      results = results.Where(f => f.DepartureLocation == flightSearch.Depart);
+      results = results.Where(f => f.Departure.Location == flightSearch.Depart);
     }
 
     if (flightSearch.Arrive != null) {
-      results = results.Where(f => f.ArrivalLocation == flightSearch.Arrive);
+      results = results.Where(f => f.Arrival.Location == flightSearch.Arrive);
     }
 
     if (flightSearch.MinDepartTime != null) {
-      results = results.Where(f => f.DepartureTime >= flightSearch.MinDepartTime);
+      results = results.Where(f => f.Departure.Time >= flightSearch.MinDepartTime);
     }
 
     if (flightSearch.MaxDepartTime != null) {
-      results = results.Where(f => f.DepartureTime <= flightSearch.MaxDepartTime);
+      results = results.Where(f => f.Departure.Time <= flightSearch.MaxDepartTime);
     }
 
     if (flightSearch.MinArriveTime != null) {
-      results = results.Where(f => f.ArrivalTime >= flightSearch.MinArriveTime);
+      results = results.Where(f => f.Arrival.Time >= flightSearch.MinArriveTime);
     }
 
     if (flightSearch.MaxArriveTime != null) {
-      results = results.Where(f => f.ArrivalTime <= flightSearch.MaxArriveTime);
+      results = results.Where(f => f.Arrival.Time <= flightSearch.MaxArriveTime);
     }
 
     if (flightSearch.MinLength != null) {

@@ -5,7 +5,7 @@ namespace Packt.CloudySkiesAir.Chapter5 {
 
     protected override string BuildFlightIdentifier() =>
       base.BuildFlightIdentifier() +
-      $"{ArrivalLocation.Code} carrying " +
+      $"{Arrival.Location.Code} carrying " +
       $"{Cargo} for {CharterCompany}";
   }
 }

@@ -10,7 +10,7 @@ namespace Packt.CloudySkiesAir.Chapter5 {
 
     protected override string BuildFlightIdentifier() =>
       base.BuildFlightIdentifier() +
-      $"{ArrivalLocation} carrying " +
+      $"{Arrival.Location} carrying " +
       $"{Passengers} people";
 
   }
