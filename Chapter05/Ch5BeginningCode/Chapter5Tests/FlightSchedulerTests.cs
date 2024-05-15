@@ -51,7 +51,7 @@ namespace Packt.CloudySkiesAir.Chapter5.Tests
             _flightScheduler.ScheduleFlight("CS2005", _airport2, _airport1, departTime, departTime.AddHours(14.5), 100);
 
             // Act
-            IEnumerable<IFlightInfo> result = _flightScheduler.Search(null, null, DateTime.Today, null, null, null, null, null);
+            IEnumerable<IFlightInfo> result = _flightScheduler.Search(new FlightSearch(null, null, DateTime.Today, null, null, null, null, null));
 
             // Assert
             Assert.NotEmpty(result);
@@ -67,7 +67,7 @@ namespace Packt.CloudySkiesAir.Chapter5.Tests
             _flightScheduler.ScheduleFlight("CS2005", _airport2, _airport1, departTime, departTime.AddHours(14.5), 100);
 
             // Act
-            IEnumerable<IFlightInfo> result = _flightScheduler.Search(_airport1, null, null, null, null, null, null, null);
+            IEnumerable<IFlightInfo> result = _flightScheduler.Search(new FlightSearch(_airport1, null, null, null, null, null, null, null));
 
             // Assert
             Assert.Empty(result);

@@ -1,5 +1,27 @@
 ﻿namespace Packt.CloudySkiesAir.Chapter5;
 
+public class FlightSearch
+{
+  public FlightSearch(Airport? depart, Airport? arrive, DateTime? minDepartTime, DateTime? maxDepartTime, DateTime? minArriveTime, DateTime? maxArriveTime, TimeSpan? minLength, TimeSpan? maxLength) {
+    Depart = depart;
+    Arrive = arrive;
+    MinDepartTime = minDepartTime;
+    MaxDepartTime = maxDepartTime;
+    MinArriveTime = minArriveTime;
+    MaxArriveTime = maxArriveTime;
+    MinLength = minLength;
+    MaxLength = maxLength;
+  }
+
+  public Airport? Depart { get; private set; }
+  public Airport? Arrive { get; private set; }
+  public DateTime? MinDepartTime { get; private set; }
+  public DateTime? MaxDepartTime { get; private set; }
+  public DateTime? MinArriveTime { get; private set; }
+  public DateTime? MaxArriveTime { get; private set; }
+  public TimeSpan? MinLength { get; private set; }
+  public TimeSpan? MaxLength { get; private set; }
+}
 public class FlightScheduler {
   private readonly List<IFlightInfo> _flights = new();
 
@@ -33,47 +55,40 @@ public class FlightScheduler {
   }
 
   public IEnumerable<IFlightInfo> Search(
-    Airport? depart,
-    Airport? arrive,
-    DateTime? minDepartTime,
-    DateTime? maxDepartTime,
-    DateTime? minArriveTime,
-    DateTime? maxArriveTime,
-    TimeSpan? minLength,
-    TimeSpan? maxLength) {
+    FlightSearch flightSearch) {
 
     IEnumerable<IFlightInfo> results = _flights;
 
-    if (depart != null) {
-      results = results.Where(f => f.DepartureLocation == depart);
+    if (flightSearch.Depart != null) {
+      results = results.Where(f => f.DepartureLocation == flightSearch.Depart);
     }
 
-    if (arrive != null) {
-      results = results.Where(f => f.ArrivalLocation == arrive);
+    if (flightSearch.Arrive != null) {
+      results = results.Where(f => f.ArrivalLocation == flightSearch.Arrive);
     }
 
-    if (minDepartTime != null) {
-      results = results.Where(f => f.DepartureTime >= minDepartTime);
+    if (flightSearch.MinDepartTime != null) {
+      results = results.Where(f => f.DepartureTime >= flightSearch.MinDepartTime);
     }
 
-    if (maxDepartTime != null) {
-      results = results.Where(f => f.DepartureTime <= maxDepartTime);
+    if (flightSearch.MaxDepartTime != null) {
+      results = results.Where(f => f.DepartureTime <= flightSearch.MaxDepartTime);
     }
 
-    if (minArriveTime != null) {
-      results = results.Where(f => f.ArrivalTime >= minArriveTime);
+    if (flightSearch.MinArriveTime != null) {
+      results = results.Where(f => f.ArrivalTime >= flightSearch.MinArriveTime);
     }
 
-    if (maxArriveTime != null) {
-      results = results.Where(f => f.ArrivalTime <= maxArriveTime);
+    if (flightSearch.MaxArriveTime != null) {
+      results = results.Where(f => f.ArrivalTime <= flightSearch.MaxArriveTime);
     }
 
-    if (minLength != null) {
-      results = results.Where(f => f.Duration >= minLength);
+    if (flightSearch.MinLength != null) {
+      results = results.Where(f => f.Duration >= flightSearch.MinLength);
     }
 
-    if (maxLength != null) {
-      results = results.Where(f => f.Duration <= maxLength);
+    if (flightSearch.MaxLength != null) {
+      results = results.Where(f => f.Duration <= flightSearch.MaxLength);
     }
 
     return results;

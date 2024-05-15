@@ -26,7 +26,7 @@ namespace Packt.CloudySkiesAir.Chapter5 {
 
       Console.WriteLine();
       Console.WriteLine($"Flights to {arr.Name}:");
-      IEnumerable<IFlightInfo> filteredList = scheduler.Search(null, arr, null, null, null, null, null, null);
+      IEnumerable<IFlightInfo> filteredList = scheduler.Search(new FlightSearch(null, arr, null, null, null, null, null, null));
       foreach (IFlightInfo flight in filteredList) {
         Console.WriteLine(flight);
       }
